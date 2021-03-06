@@ -36,19 +36,13 @@ export class DetalleService {
     return this.http.put(`${this._Api}/detalle/${id}`,data);
   }
 
-  //Traer todo de las tablas conectadas
-
-  getAllUsers():Observable<any>{
-    return this.http.get(`${this._Api}/users`);
-  }
+  //Traer todo de producto
 
   getAllProductos(): Observable<any>{
     return this.http.get(`${this._Api}/productos`);
   }
 
-  getAllPedidos(): Observable<any>{
-    return this.http.get(`${this._Api}/pedidos`);
-  }
+  
   
 
 

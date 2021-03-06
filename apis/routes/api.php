@@ -60,9 +60,9 @@ Route::delete('/pedidos/{id}',[PedidoController::class, 'destroy']);
 
 //Detalle
 Route::get('/detalles', [DetalleController::class, 'index']);
-Route::post('/detalle/create',[DetalleController::class, 'store']);
-Route::get('/detalle/{id}', [DetalleController::class, 'show']);
-Route::put('/detalle/{id}',[DetalleController::class, 'update']);
-Route::delete('/detalle/{id}',[DetalleController::class, 'destroy']);
+Route::post('/detalles/create',[DetalleController::class, 'store']);
+Route::get('/detalles/{id}', [DetalleController::class, 'show']);
+Route::put('/detalles/{id}',[DetalleController::class, 'update']);
+Route::delete('/detalles/{id}',[DetalleController::class, 'destroy']);
 
 
