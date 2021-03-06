@@ -39,9 +39,7 @@ class DetalleController extends Controller
     {
         $detalle= new Detalle();
         $detalle->status=$request->status;
-        $detalle->user_id=$request->user_id;
         $detalle->producto_id=$request->producto_id;
-        $detalle->pedido_id=$request->pedido_id;
 
         if($detalle->save()){
             return new DetalleResource($detalle);
@@ -82,9 +80,7 @@ class DetalleController extends Controller
     {
         $detalle=Detalle::findOrFail($id);
         $detalle->status=$request->status;
-        $detalle->user_id=$request->user_id;
         $detalle->producto_id=$request->producto_id;
-        $detalle->pedido_id=$request->pedido_id;
 
         if($detalle->save()){
             return new DetalleResource($detalle);

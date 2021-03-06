@@ -42,6 +42,8 @@ class PedidoController extends Controller
         $pedido->fecha=$request->fecha;
         $pedido->orden=$request->orden;
         $pedido->total=$request->total;
+        $pedido->detalle_id=$request->detalle_id;
+        $pedido->user_id=$request->user_id;
 
         if($pedido->save()){
             return new PedidoResource($pedido);
@@ -82,6 +84,8 @@ class PedidoController extends Controller
         $pedido= Pedido::findOrFail($id);
         $pedido->orden=$request->orden;
         $pedido->total=$request->total;
+        $pedido->detalle_id=$request->detalle_id;
+        $pedido->user_id=$request->user_id;
 
         if($pedido->save()){
             return new PedidoResource($pedido);

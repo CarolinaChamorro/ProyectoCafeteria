@@ -44,8 +44,8 @@ class User extends Authenticatable
         return $this-> hasOne(Perfil::class)->withTimeStamps();
     }
 
-    public function detalle(){
-        return $this-> belongsToMany(Detalle::class)->withTimeStamps();
+    public function pedidos(){
+        return $this->hasMany(Pedido::class)->withTimeStamps();
     }
     
 }

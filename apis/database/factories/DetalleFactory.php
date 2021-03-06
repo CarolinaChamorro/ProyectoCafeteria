@@ -23,8 +23,6 @@ class DetalleFactory extends Factory
     {
         return [
             'status'=>$this->faker->word, 
-            'user_id' => random_int(1, 5),
-            'pedido_id' => random_int(1, 5),
             'producto_id' => random_int(2, 5),
         ];
     }
