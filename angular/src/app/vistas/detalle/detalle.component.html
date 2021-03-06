@@ -1,1 +1,71 @@
-<p>detalle works!</p>
+<div class="">
+<div>
+    <h1>Detalle de productos-pedidos-users</h1>
+</div>
+<div>
+ <button routerLink="/pedidos">Agregar pedido</button>
+</div>
+<div>
+    <h1 *ngIf="detalles.length==0">No hay datos que mostrar</h1>
+    <div *ngFor="let detalle of detalles">
+
+        <span *ngFor='let user of users' class="flex items-center justify-center">
+            <p *ngIf='user.id === detalle.user_id' class="text-xs font-sans">{{user.name+' '+user.email}}</p>
+        </span>
+
+        <span *ngFor='let pedido of pedidos' class="flex items-center justify-center">
+            <p *ngIf='pedido.id === detalle.pedido_id' class="text-xs font-sans">{{pedido.fecha+''+pedido.orden}}</p>
+        </span>
+
+        <!-- <h1>Usuarios</h1>
+        <table>
+            <thead>
+                <th>#</th>
+                <th>Email</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <h1>Productos</h1>
+        <table>
+            <thead>
+                <th>#</th>
+                <th>nombre</th>
+                <th>detalle</th>
+                <th>precio</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.detalle}}</td>
+                    <td>{{producto.precio}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Pedidos</h1>
+        <table>
+            <thead>
+                <th>#</th>
+                <th>fecha</th>
+                <th>orden</th>
+                <th>total</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of pedidos let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{pedido.fecha}}</td>
+                    <td>{{pedido.orden}}</td>
+                    <td>{{pedido.total}}</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+</div>
+</div>

@@ -15,6 +15,7 @@ class CreateDetallesTable extends Migration
     {
         Schema::create('detalles', function (Blueprint $table) {
             $table->id(); 
+            $table->string('status');
             $table->timestamps();
 
             /*Foreign keys of all tables */

@@ -2,12 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+//User
+Route::get('/users',[UserController::class, 'index']);
 //categorias
 Route::get('/categoria',[CategoriaController::class, 'index']);
 Route::post('/categoria/create', [CategoriaController::class, 'store']);
@@ -55,7 +59,7 @@ Route::put('/pedidos/{id}',[PedidoController::class, 'update']);
 Route::delete('/pedidos/{id}',[PedidoController::class, 'destroy']);
 
 //Detalle
-Route::get('/detalle', [DetalleController::class, 'index']);
+Route::get('/detalles', [DetalleController::class, 'index']);
 Route::post('/detalle/create',[DetalleController::class, 'store']);
 Route::get('/detalle/{id}', [DetalleController::class, 'show']);
 Route::put('/detalle/{id}',[DetalleController::class, 'update']);

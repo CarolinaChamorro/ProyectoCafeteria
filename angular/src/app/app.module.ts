@@ -7,9 +7,15 @@ import { FooterComponent } from './plantillas/footer/footer.component';
 import { HeaderComponent } from './plantillas/header/header.component';
 import { HomeComponent } from './vistas/home/home.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms'
+import {ToastrModule} from 'ngx-toastr';
 
 import {HttpClientModule} from '@angular/common/http';
 import { DetalleComponent } from './vistas/detalle/detalle.component';
+import { LoginComponent } from './vistas/login/login.component';
+import { PedidosComponent } from './vistas/pedidos/pedidos.component';
+import { ProductosComponent } from './vistas/productos/productos.component';
+import { CategoriaComponent } from './vistas/categoria/categoria.component';
+
 
 @NgModule({
   declarations: [
@@ -19,13 +25,18 @@ import { DetalleComponent } from './vistas/detalle/detalle.component';
     HomeComponent,
     routingComponents,
     DetalleComponent,
+    LoginComponent,
+    PedidosComponent,
+    ProductosComponent,
+    CategoriaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

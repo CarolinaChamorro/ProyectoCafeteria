@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Detalle;
-use App\Http\Resources\DetalleResource;
+use App\Models\User;
+Use App\Http\Resources\UserResource;
 
-class DetalleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class DetalleController extends Controller
      */
     public function index()
     {
-        $detalle= Detalle::paginate(10);
-        return DetalleResource::collection($detalle);
+        $user= User::all();
+        return UserResource::collection($user);
     }
 
     /**
@@ -37,15 +37,7 @@ class DetalleController extends Controller
      */
     public function store(Request $request)
     {
-        $detalle= new Detalle();
-        $detalle->status=$request->status;
-        $detalle->user_id=$request->user_id;
-        $detalle->producto_id=$request->producto_id;
-        $detalle->pedido_id=$request->pedido_id;
-
-        if($detalle->save()){
-            return new DetalleResource($detalle);
-        }
+        //
     }
 
     /**
@@ -56,8 +48,7 @@ class DetalleController extends Controller
      */
     public function show($id)
     {
-        $detalle = Detalle::findOrFail($id);
-        return new DetalleResource($detalle);
+        //
     }
 
     /**
@@ -80,15 +71,7 @@ class DetalleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $detalle=Detalle::findOrFail($id);
-        $detalle->status=$request->status;
-        $detalle->user_id=$request->user_id;
-        $detalle->producto_id=$request->producto_id;
-        $detalle->pedido_id=$request->pedido_id;
-
-        if($detalle->save()){
-            return new DetalleResource($detalle);
-        }
+        //
     }
 
     /**
@@ -99,9 +82,6 @@ class DetalleController extends Controller
      */
     public function destroy($id)
     {
-        $detalle_Detealle::findOrFail($id);
-        if($detalle->delete()){
-            return new DetalleResource($detalle);
-        }
+        //
     }
 }

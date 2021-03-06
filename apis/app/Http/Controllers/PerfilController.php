@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Perfil;
 use App\Http\Resources\PerfilResource;
 
-class UserController extends Controller
+class PerfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $perfil = Perfil::all();
-        return $perfil;
+        $perfil = Perfil::paginate(10);
+        return PerfilResource::collection($perfil);
     }
 
     /**

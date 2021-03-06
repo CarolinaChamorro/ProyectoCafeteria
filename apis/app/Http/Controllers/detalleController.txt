@@ -38,7 +38,6 @@ class DetalleController extends Controller
     public function store(Request $request)
     {
         $detalle= new Detalle();
-        $detalle->status=$request->status;
         $detalle->user_id=$request->user_id;
         $detalle->producto_id=$request->producto_id;
         $detalle->pedido_id=$request->pedido_id;
@@ -81,7 +80,6 @@ class DetalleController extends Controller
     public function update(Request $request, $id)
     {
         $detalle=Detalle::findOrFail($id);
-        $detalle->status=$request->status;
         $detalle->user_id=$request->user_id;
         $detalle->producto_id=$request->producto_id;
         $detalle->pedido_id=$request->pedido_id;
