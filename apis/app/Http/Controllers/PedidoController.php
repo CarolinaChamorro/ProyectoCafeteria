@@ -58,7 +58,8 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        return Pedido::findOrFail($id);
+        $pedido = Pedido::findOrFail($id);
+        return new PedidoResource($pedido);
     }
 
     /**

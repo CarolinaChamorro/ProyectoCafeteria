@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LaravelApiService} from '../../services/api/laravel-api.service';
-import { ListaPedido } from '../../models/listapedidos.interface';
-import {FormGroup, FormControl, Validators} from '@angular/forms'
+import { PedidoService } from '../../services/pedido.service';
+import {ToastrService} from 'ngx-toastr'
 
 @Component({
   selector: 'app-pedidos',
@@ -10,28 +9,59 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
 })
 export class PedidosComponent implements OnInit {
 
-  pedidoForm = new FormGroup({
-    fecha: new FormControl(new Date().getDay()),
-    orden: new FormControl('', Validators.required),
-    total: new FormControl('')
-  })
-  pedidos:ListaPedido[]=[];  
-  listadoCarrito: number[]=[]
+  pedidos:Array<any>=[];
+  users:Array<any>=[];
+  detalles:Array<any>=[];
+  constructor(private pedidoService:PedidoService,  private toastr:ToastrService){}
 
-  constructor(private api:LaravelApiService) { }
+  traerPedidos(){
+    this.pedidoService.allPedidos().subscribe(res=>{
+      this.pedidos=res.data
+      // console.log(res.data)
+    },
+    err => {
+      this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
+        positionClass: 'toast-bottom-left'
+      })
+    })
+  }
+
+  eliminarPedido(id:string){
+    this.pedidoService.deletePedidos(id).subscribe(res=>{
+      this.toastr.error('Eliminado exitosamente', 'PEDIDOS', {
+        positionClass: 'toast-bottom-left'
+      })
+      this.traerPedidos();
+    },
+      err => {
+        this.toastr.warning('Intentalo más tarde', 'PEDIDOS ERROR', {
+          positionClass: 'toast-bottom-left'
+        })
+      })
+  }
+  //Falta create
+  //Falta update
+
+//Llamar a los datos
+  traerUsers(){
+    this.pedidoService.getAllUsers().subscribe(res=>{
+      this.users=res.data;
+      console.log(res.data)
+    })
+  }
+
+  traerDetalle(){
+    this.pedidoService.getAllDetalle().subscribe(res=>{
+      this.detalles=res.data;
+      console.log(res.data)
+    })
+  }
   
   ngOnInit(): void {
-  	this.api.getAllPedidos().subscribe((data) => {
-      this.pedidos = data;
-      console.log(this.pedidos);
-  		
-  		})
+    this.traerPedidos();
+  	this.traerUsers();
+    this.traerDetalle();
   }
-  agregarCarrito(){
-    
-  }
-  quitarCarrito(){
-
-  }
+  
 
 }

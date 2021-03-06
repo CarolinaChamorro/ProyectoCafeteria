@@ -1,4 +1,26 @@
+<div class="">
+    <div>
+        <h1>Detalle de productos-pedidos-users</h1>
+    </div>
+    <div>
+     <button routerLink="/detalles">Detalle</button>
+    </div>
+    <div>
+        <h1 *ngIf="pedidos.length==0">No hay datos que mostrar</h1>
+        <div *ngFor="let pedido of pedidos">
+    
+            <span *ngFor='let detalle of detalles' class="flex items-center justify-center">
+                <p *ngIf='detalle.id === pedido.detalle_id' class="text-xs font-sans">{{detalle.status+' '+detalle.producto_id}}</p>
+            </span>
 
+            <span *ngFor='let user of users' class="flex items-center justify-center">
+                <p *ngIf='user.id === pedido.user_id' class="text-xs font-sans">{{user.name+' '+user.email}}</p>
+            </span>
+
+    
+        </div>
+    </div>
+    </div>
 <!-- Catlogo de productos a seleccionar -->
 <!-- <br/><br/>
 <h2 class="text-center">Catálogo de productos</h2>

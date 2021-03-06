@@ -8,17 +8,15 @@ import {ToastrService} from 'ngx-toastr'
 })
 export class DetalleComponent implements OnInit {
 
-  detalles:Array<any>=[];
-  users:Array<any>=[];
-  pedidos:Array<any>=[];
-  productos:Array<any>=[];
+  detalles: Array<any>=[];
+  productos: Array<any>=[];
 
   constructor(private detalleService:DetalleService, private toastr:ToastrService) { }
 
   traerDetalles(){
     this.detalleService.allDetalles().subscribe(res=>{
       this.detalles=res.data
-      console.log(res.data)
+      // console.log(res.data)
     },
     err => {
       this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
@@ -42,30 +40,17 @@ export class DetalleComponent implements OnInit {
   }
 
 
-  traerUsers(){
-    this.detalleService.getAllUsers().subscribe(res=>{
-      this.users=res.data;
-    })
-  }
-
-  traerPedidos(){
-    this.detalleService.getAllPedidos().subscribe(res=>{
-      this.pedidos=res.data;
-    })
-  }
-
   traerProductos(){
     this.detalleService.getAllProductos().subscribe(res=>{
-      this.productos=res.data;
+      this.productos = res.data;
+      console.log(res.data)
     })
   }
   
 
   ngOnInit(): void {
-    this.traerDetalles();
-    this.traerUsers();
-    this.traerPedidos();
     this.traerProductos();
+    this.traerDetalles();
   }
 
 }

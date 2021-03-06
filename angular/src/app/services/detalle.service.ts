@@ -17,23 +17,23 @@ export class DetalleService {
   constructor(private http: HttpClient) { }
 
   allDetalles():Observable<any>{
-    return this.http.get(`${this._Api}/detalles`)
+    return this.http.get(`${this._Api}/detalles`);
   }
 
   addDetalle(detalle:any):Observable<any>{
-    return this.http.post(`${this._Api}/detalle/create`,detalle);
+    return this.http.post(`${this._Api}/detalles/create`,detalle);
   }
 
   deleteDetalle(id:string):Observable<any>{
-    return this.http.delete(`${this._Api}/detalle/${id}`);
+    return this.http.delete(`${this._Api}/detalles/${id}`);
   }
 
   getOnlyDetalle(id:string): Observable<any>{
-    return this.http.get(`${this._Api}/detalle/${id}`);
+    return this.http.get(`${this._Api}/detalles/${id}`);
   }
 
   updateDetalle(id:string, data:any): Observable<any>{
-    return this.http.put(`${this._Api}/detalle/${id}`,data);
+    return this.http.put(`${this._Api}/detalles/${id}`,data);
   }
 
   //Traer todo de producto
@@ -41,9 +41,6 @@ export class DetalleService {
   getAllProductos(): Observable<any>{
     return this.http.get(`${this._Api}/productos`);
   }
-
-  
-  
 
 
 }

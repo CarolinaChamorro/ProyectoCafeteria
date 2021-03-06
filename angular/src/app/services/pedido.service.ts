@@ -35,4 +35,13 @@ export class PedidoService {
     return this.http.put(`${this._Api}/pedidos/${id}`,data);
   }
 
+  //Datos
+  getAllDetalle(): Observable<any>{
+    return this.http.get(`${this._Api}/detalles`);
+  }
+
+  getAllUsers():Observable<any>{
+    return this.http.get(`${this._Api}/users`);
+  }
+
 }

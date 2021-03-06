@@ -17,7 +17,7 @@ class ProductoController extends Controller
     {
         //
          $producto = Producto::all();
-         return $producto;
+         return ProductoResource::collection($producto);
     }
 
     /**
@@ -57,7 +57,8 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        return Producto::findOrFail($id);
+        $producto = Producto::findOrFail($id);
+        return new ProductoResource($producto);
     }
 
     /**
