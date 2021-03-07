@@ -8,6 +8,7 @@ import { HeaderComponent } from './plantillas/header/header.component';
 import { HomeComponent } from './vistas/home/home.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms'
 import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {HttpClientModule} from '@angular/common/http';
 import { DetalleComponent } from './vistas/detalle/detalle.component';
@@ -36,7 +37,8 @@ import { CategoriaComponent } from './vistas/categoria/categoria.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

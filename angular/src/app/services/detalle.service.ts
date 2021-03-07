@@ -21,19 +21,19 @@ export class DetalleService {
   }
 
   addDetalle(detalle:any):Observable<any>{
-    return this.http.post(`${this._Api}/detalles/create`,detalle);
+    return this.http.post(`${this._Api}/detalle/create`,detalle);
   }
 
   deleteDetalle(id:string):Observable<any>{
-    return this.http.delete(`${this._Api}/detalles/${id}`);
+    return this.http.delete(`${this._Api}/detalle/${id}`);
   }
 
   getOnlyDetalle(id:string): Observable<any>{
-    return this.http.get(`${this._Api}/detalles/${id}`);
+    return this.http.get(`${this._Api}/detalle/${id}`);
   }
 
   updateDetalle(id:string, data:any): Observable<any>{
-    return this.http.put(`${this._Api}/detalles/${id}`,data);
+    return this.http.put(`${this._Api}/detalle/${id}`,data);
   }
 
   //Traer todo de producto

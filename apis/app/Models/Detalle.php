@@ -16,4 +16,8 @@ class Detalle extends Model
     public function pedidos(){
         return $this-> hasOne(Pedido::class)->withTimeStamps();
     }
+
+    public function user(){
+        return $this->hasOne(Pedido::class)->withTimeStamps();
+    }
 }

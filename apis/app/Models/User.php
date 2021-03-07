@@ -47,5 +47,9 @@ class User extends Authenticatable
     public function pedidos(){
         return $this->hasMany(Pedido::class)->withTimeStamps();
     }
+
+    public function detalles(){
+        return $this->hasMany(Detalle::class)->withTimeStamps();
+    }
     
 }

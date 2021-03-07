@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DetalleService } from '../../services/detalle.service';
 import {ToastrService} from 'ngx-toastr'
+import { element } from 'protractor';
+import { ListaPedido } from '../../models/listapedidos.interface';
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -8,6 +10,7 @@ import {ToastrService} from 'ngx-toastr'
 })
 export class DetalleComponent implements OnInit {
 
+  
   detalles: Array<any>=[];
   productos: Array<any>=[];
 
@@ -51,6 +54,85 @@ export class DetalleComponent implements OnInit {
   ngOnInit(): void {
     this.traerProductos();
     this.traerDetalles();
+  }
+
+  //Obtener clic
+  
+  clickeado:boolean=false;
+  mostrar:number=0;
+  pedidos={
+    status:'',
+    user_id:0,
+    producto_id:'',
+    cantidad:0
+
+  };
+  lista:any={};
+  pedidosBorrados:string='';
+  cantidad:any=[];
+  textoDeInput: number = 0;
+
+  carrito(valor:string,unidad:number){
+   this.pedidos={
+    producto_id:valor,
+    cantidad:unidad,
+    user_id:1,
+    status:'Agregado'
+   };
+   this.cantidad.push(this.pedidos);
+  //  console.log(this.cantidad)
+   this.toastr.success('Se ha agregado el producto', 'Producto', {
+    positionClass: 'toast-bottom-left'
+  })
+  }
+
+  borrarElemento(arr:any,item:any){
+    var i = arr.indexOf( item );
+    arr.splice( i, 1 );
+    console.log(this.pedidos)
+    if(this.pedidos===undefined && this.cantidad[0]===undefined){
+      this.toastr.error('No hay productos en el carrito', 'Producto', {
+        positionClass: 'toast-bottom-left'
+      })
+    }else{
+      this.toastr.warning('Se quitado el producto del carrito', 'Producto', {
+        positionClass: 'toast-bottom-left'
+      })
+    }
+    
+  }
+  
+  
+  PostearPedido(){
+    for (let index = 0; index < this.cantidad.length; index++) {
+      const element = this.cantidad[index];
+      const list:any={
+        producto_id:element.producto_id,
+        cantidad:element.cantidad,
+        user_id:element.user_id,
+        status:element.status
+      }
+      
+      //console.log(element)
+      console.log(list)
+      this.detalleService.addDetalle(list).subscribe((res)=>{
+        console.log(res)
+      },err=>{
+        console.log(err);
+      })
+      
+    }
+
+    
+    
+    
+    // ,
+    // err => {
+    //   this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
+    //     positionClass: 'toast-bottom-left'
+    //   })
+    // })
+    
   }
 
 }

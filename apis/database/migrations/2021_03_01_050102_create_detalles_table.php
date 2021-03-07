@@ -16,9 +16,12 @@ class CreateDetallesTable extends Migration
         Schema::create('detalles', function (Blueprint $table) {
             $table->id(); 
             $table->string('status');
+            $table->integer('cantidad');
             $table->timestamps();
             $table->unsignedBigInteger('producto_id');
-          
+            $table->unsignedBigInteger('user_id');
+             //Relación de la tabla users
+             $table->foreign('user_id')->references('id')->on('users'); 
             //Relación de la tabla productos
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
             
