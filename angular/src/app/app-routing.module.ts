@@ -5,6 +5,7 @@ import { LoginComponent } from './vistas/login/login.component';
 import { ProductosComponent } from './vistas/productos/productos.component';
 import { CategoriaComponent } from './vistas/categoria/categoria.component';
 import { DetalleComponent } from './vistas/detalle/detalle.component';
+import { CarritoDetalleComponent } from './vistas/detalle/carrito-detalle/carrito-detalle.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login', pathMatch:'full'},
@@ -23,6 +24,9 @@ const routes: Routes = [
   //Detalle
   {path: 'detalle', component:DetalleComponent},
 
+  //Detalle
+  {path: 'carrito', component:CarritoDetalleComponent},
+
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 ];
@@ -32,4 +36,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[LoginComponent,PedidosComponent,ProductosComponent,CategoriaComponent,DetalleComponent]
+export const routingComponents=[LoginComponent,PedidosComponent,ProductosComponent,CategoriaComponent,DetalleComponent,CarritoDetalleComponent]

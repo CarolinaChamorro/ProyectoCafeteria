@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CarritoDetalleComponent } from './carrito-detalle/carrito-detalle.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CarritoDetalleComponent],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class DetalleModule { }

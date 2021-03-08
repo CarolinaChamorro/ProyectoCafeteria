@@ -1,18 +1,16 @@
-
-<<br/><br/>
+<br><br>
 <h2 class="text-center">Catálogo de productos</h2>
 <br>
+<button routerLink='/carrito' class="pedido">Ver carrito de compra</button>
 <div class="container ">
      <div class="row align-items-start d-flex justify-content-center">
         <div *ngFor="let key of  productos">
-                <div class="col-4">
-                    <div class="card mb-3 p-2" style="width: 15rem;">
+                <div class="col-4" >
+                    <div class="card mb-3 p-2 color"   style="width: 15rem;">
                         <div class="card-body">
-                        <h5 class="card-title">{{key.nombre}}</h5>
-                        <p class="card-text">{{key.detalle}}</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{key.precio}}</li>
-                        </ul>
+                        <h5 class="card-title"  [ngClass]="{'color': flag, 'sinColor': !flag}">Nombre: {{key.nombre}}</h5>
+                        <p class="card-text">Detalle: {{key.detalle}}</p>
+                            <p class="card-text">Precio: {{key.precio}}</p>
                         </div>
                         <div class="fileContainer">
                             <button (click)="clickeado=true; mostrar=key.id" > Mostrar </button>
@@ -21,8 +19,9 @@
                           <div *ngIf="clickeado && mostrar==key.id">
                             <div>
                                 <input type="number" [(ngModel)]='textoDeInput'>
-                                <button (click)="carrito(key.id,textoDeInput)" class="btn-primary mr-2">Añadir</button>
-                                <button (click)="borrarElemento(pedidos,key.id)" class="btn-danger ml-2">Quitar</button>
+                                <p class="card-text">Cantidad:{{this.pedidos.cantidad}}</p>
+                                <button (click)="carrito(key.id,textoDeInput)" class="btn-primary mr-2 mb-2">Añadir</button>
+                                <!-- <button (click)="borrarElemento(cantidad,key.id)" class="btn-danger ml-2">Quitar</button> -->
                             </div>
                             <button (click)="clickeado=false"> Ocultar </button>
                           </div>
@@ -30,7 +29,7 @@
                 </div>
         </div>
     </div>
-    <button (click)="PostearPedido()" >Hacer pedido</button>
+    
 </div>
 
-//routerLink='/pedidos'
+<!-- routerLink='/pedidos'    [ngClass]="{'color': flag, 'sinColor': !flag}" -->

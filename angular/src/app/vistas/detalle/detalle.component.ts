@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { DetalleService } from '../../services/detalle.service';
-import {ToastrService} from 'ngx-toastr'
-import { element } from 'protractor';
-import { ListaPedido } from '../../models/listapedidos.interface';
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent implements OnInit {
-
   
   detalles: Array<any>=[];
   productos: Array<any>=[];
 
-  constructor(private detalleService:DetalleService, private toastr:ToastrService) { }
+  constructor(private detalleService:DetalleService,
+     private toastr:ToastrService
+     ) { }
 
   traerDetalles(){
     this.detalleService.allDetalles().subscribe(res=>{
@@ -59,20 +58,23 @@ export class DetalleComponent implements OnInit {
   //Obtener clic
   
   clickeado:boolean=false;
-  mostrar:number=0;
+  mostrar:string='';
   pedidos={
     status:'',
     user_id:0,
-    producto_id:'',
+    producto_id:0,
     cantidad:0
 
   };
-  lista:any={};
+  lista:any=[];
   pedidosBorrados:string='';
   cantidad:any=[];
-  textoDeInput: number = 0;
+  textoDeInput: number = 1;
+   
+  //color del card
+  flag = false;
 
-  carrito(valor:string,unidad:number){
+  carrito(valor:number,unidad:number){    
    this.pedidos={
     producto_id:valor,
     cantidad:unidad,
@@ -80,10 +82,11 @@ export class DetalleComponent implements OnInit {
     status:'Agregado'
    };
    this.cantidad.push(this.pedidos);
-  //  console.log(this.cantidad)
+  console.log(this.cantidad)
    this.toastr.success('Se ha agregado el producto', 'Producto', {
     positionClass: 'toast-bottom-left'
   })
+  console.log('Lista de productos'+this.lista)
   }
 
   borrarElemento(arr:any,item:any){
@@ -104,35 +107,37 @@ export class DetalleComponent implements OnInit {
   
   
   PostearPedido(){
-    for (let index = 0; index < this.cantidad.length; index++) {
-      const element = this.cantidad[index];
-      const list:any={
-        producto_id:element.producto_id,
-        cantidad:element.cantidad,
-        user_id:element.user_id,
-        status:element.status
-      }
-      
-      //console.log(element)
-      console.log(list)
-      this.detalleService.addDetalle(list).subscribe((res)=>{
-        console.log(res)
-      },err=>{
-        console.log(err);
+    if(this.cantidad.length===0){
+      this.toastr.error('No hay productos en el carrito', 'Producto', {
+        positionClass: 'toast-bottom-left'
       })
-      
-    }
+    }else{
+      for (let index = 0; index < this.cantidad.length; index++) {
+        const element = this.cantidad[index];
+        const list:any={
+          producto_id:element.producto_id,
+          cantidad:element.cantidad,
+          user_id:element.user_id,
+          status:element.status
+        }
+        
+        //console.log(element)
+        console.log(list)
+        this.detalleService.addDetalle(list).subscribe((res)=>{
+          console.log(res)
+        } ,
+        err => {
+        this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
+          positionClass: 'toast-bottom-left'
+        })
+      })}
+      this.toastr.success('Se ha realizado con éxito su pedido', 'Pedido', {
+        positionClass: 'toast-bottom-left'
+      })
 
+    }
     
-    
-    
-    // ,
-    // err => {
-    //   this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
-    //     positionClass: 'toast-bottom-left'
-    //   })
-    // })
-    
+ 
   }
 
 }
