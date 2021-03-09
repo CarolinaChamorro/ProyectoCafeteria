@@ -43,6 +43,7 @@ class PerfilController extends Controller
         $perfil->direccion=$request->direccion;
         $perfil->telefono=$request->telefono;
         $perfil->rol=$request->rol;
+        $perfil->user_id=$request->user_id;
 
         if($perfil->save()){
             return new PerfilResource($perfil);

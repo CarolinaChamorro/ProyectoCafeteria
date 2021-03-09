@@ -30,11 +30,15 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //User
 Route::get('/users',[UserController::class, 'index']);
-//categorias
+
+//detalle
+Route::get('/categorias',[CategoriaController::class, 'indexDetalle']);
+
+//Categorias
 Route::get('/categoria',[CategoriaController::class, 'index']);
 Route::post('/categoria/create', [CategoriaController::class, 'store']);
-Route::get('/categoria/{id}', [CategoriaController::class, 'show']);
-Route::put('/categoria/{id}',[CategoriaController::class, 'update']);
+Route::get('/categoria/{id}', [CategoriaController::class, 'edit']);
+Route::put('/categoria/{id}', 'CategoriaController@update');
 Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy']);
 
 //perfil 
@@ -44,11 +48,14 @@ Route::get('/perfil/{id}', [PerfilController::class, 'show']);
 Route::put('/perfil/{id}',[PerfilController::class, 'update']);
 Route::delete('/perfil/{id}', [PerfilController::class, 'destroy']);
 
+//detalle
+Route::get('/producto', [ProductoController::class, 'indexDetalle']);
+
 //Productos
 Route::get('/productos', [ProductoController::class, 'index']);
-Route::post('/productos/create', [ProductoController::class, 'store']);
-Route::get('/productos/{id}', [ProductoController::class, 'show']);
-Route::put('/productos/{id}', [ProductoController::class, 'update']);
+Route::post('/productos', [ProductoController::class, 'store']);
+Route::get('/productos/{id}', [ProductoController::class, 'edit']);
+Route::put('/productos/{id}', 'ProductoController@update');
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 
 //Pedidos
@@ -64,5 +71,8 @@ Route::post('/detalle/create',[DetalleController::class, 'store']);
 Route::get('/detalle/{id}', [DetalleController::class, 'show']);
 Route::put('/detalle/{id}',[DetalleController::class, 'update']);
 Route::delete('/detalle/{id}',[DetalleController::class, 'destroy']);
+
+//DetallePedido
+Route::get('/detalle/pedido/{id}', [DetalleController::class, 'getDetallesPedido']);
 
 

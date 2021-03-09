@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidoService } from '../../services/pedido.service';
-import {ToastrService} from 'ngx-toastr'
-
+import {Router, ActivatedRoute} from '@angular/router';
+import { DetallePedido } from '../../models/detalle-pedido';
+import { LaravelApiService } from 'src/app/services/api/laravel-api.service';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -9,59 +9,33 @@ import {ToastrService} from 'ngx-toastr'
 })
 export class PedidosComponent implements OnInit {
 
-  pedidos:Array<any>=[];
-  users:Array<any>=[];
-  detalles:Array<any>=[];
-  constructor(private pedidoService:PedidoService,  private toastr:ToastrService){}
-
-  traerPedidos(){
-    this.pedidoService.allPedidos().subscribe(res=>{
-      this.pedidos=res.data
-      // console.log(res.data)
-    },
-    err => {
-      this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
-        positionClass: 'toast-bottom-left'
-      })
-    })
-  }
-
-  eliminarPedido(id:string){
-    this.pedidoService.deletePedidos(id).subscribe(res=>{
-      this.toastr.error('Eliminado exitosamente', 'PEDIDOS', {
-        positionClass: 'toast-bottom-left'
-      })
-      this.traerPedidos();
-    },
-      err => {
-        this.toastr.warning('Intentalo más tarde', 'PEDIDOS ERROR', {
-          positionClass: 'toast-bottom-left'
-        })
-      })
-  }
-  //Falta create
-  //Falta update
-
-//Llamar a los datos
-  traerUsers(){
-    this.pedidoService.getAllUsers().subscribe(res=>{
-      this.users=res.data;
-      console.log(res.data)
-    })
-  }
-
-  traerDetalle(){
-    this.pedidoService.getAllDetalle().subscribe(res=>{
-      this.detalles=res.data;
-      console.log(res.data)
-    })
-  }
-  
+  constructor(private activaterouter:ActivatedRoute, private router:Router, private api:LaravelApiService) { }
+  pedidoUserPrducto:any=[];
+  detallesPedido:DetallePedido[]=[];
+  index:number=0;
+  subtotal:any=[];
+  total:number=0
   ngOnInit(): void {
-    this.traerPedidos();
-  	this.traerUsers();
-    this.traerDetalle();
+    let pedidoProductos = localStorage.getItem('user_id') //this.activaterouter.snapshot.paramMap.get('id')
+   
+    this.api.detallesPedido(pedidoProductos).subscribe(data=>{
+      for (let j = 0; j < data.length; j++) {
+        if (data[j].status="Agregado") {
+          this.detallesPedido = data;   
+        }
+      }
+      for (let index = 0; index < this.detallesPedido.length; index++) {
+        if (this.detallesPedido[index].status="Agregado") {
+          this.subtotal.push(this.detallesPedido[index].cantidad * this.detallesPedido[index].precio)  
+          console.log(this.subtotal)   
+        }    
+      }
+      for (let i = 0; i < this.subtotal.length; i++) {
+        let numero = this.subtotal[i];
+        this.total += numero; 
+        console.log(this.total);       
+      }      
+      console.log(data);
+    })
   }
-  
-
 }

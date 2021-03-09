@@ -13,11 +13,18 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexDetalle()
     {
         //
          $producto = Producto::all();
          return ProductoResource::collection($producto);
+    }
+
+    public function index()
+    {
+        //
+         $producto = Producto::all();
+         return $producto;
     }
 
     /**
@@ -69,7 +76,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Producto::find($id);
+      return $producto;
     }
 
     /**
@@ -81,14 +89,12 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $producto= Producto::findOrFail($id);
-        $producto->nombre=$request->nombre;
-        $producto->detalle=$request->detalle;
-        $producto->precio=$request->precio;
-
-        if($producto->save()){
-            return new ProductoResource($producto);
-        }
+        $producto= Producto::find($id);
+        $producto->nombre=$request->get("nombre");
+        $producto->detalle=$request->get("detalle");
+        $producto->precio=$request->get("precio");
+        $producto -> save();
+        return $producto;
     }
 
     /**

@@ -39,8 +39,12 @@ export class DetalleService {
   //Traer todo de producto
 
   getAllProductos(): Observable<any>{
-    return this.http.get(`${this._Api}/productos`);
+    return this.http.get(`${this._Api}/producto`);
   }
 
+  //Traer las categorias
+  getAllCategorias(): Observable<any>{
+    return this.http.get(`${this._Api}/categorias`);
+  }
 
 }

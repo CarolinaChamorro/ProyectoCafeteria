@@ -29,6 +29,16 @@ class DetalleController extends Controller
         //
     }
 
+    public function getDetallesPedido($id)
+    {
+        $detalle = Detalle::where("detalles.user_id", "=",$id)
+        ->select("detalles.status", "detalles.cantidad", "productos.nombre","productos.precio", "categorias.nombre_categoria")
+        ->join("productos", "productos.id", "=", "detalles.producto_id")
+        ->join("categorias", "categorias.id", "=", "productos.categoria_id")
+        ->get();
+        return $detalle;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -101,7 +111,7 @@ class DetalleController extends Controller
      */
     public function destroy($id)
     {
-        $detalle_Detealle::findOrFail($id);
+        $detalle=Detalle::findOrFail($id);
         if($detalle->delete()){
             return new DetalleResource($detalle);
         }

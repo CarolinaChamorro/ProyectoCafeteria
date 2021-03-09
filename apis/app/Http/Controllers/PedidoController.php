@@ -58,8 +58,12 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        $pedido = Pedido::findOrFail($id);
-        return new PedidoResource($pedido);
+        $pedido = Pedido::where("pedidos.user_id", "=", $id)
+        ->select("pedidos.orden", "users.name", "users.email","perfils.cedula", "perfils.telefono", "perfils.direccion")
+        ->join("users", "users.id", "=", "pedidos.user_id")
+        ->join("perfils", "perfils.user_id", "=", "users.id")
+        ->get();
+        return $pedido;
     }
 
     /**

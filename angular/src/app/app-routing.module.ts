@@ -2,32 +2,38 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PedidosComponent } from './vistas/pedidos/pedidos.component';
 import { LoginComponent } from './vistas/login/login.component';
-import { ProductosComponent } from './vistas/productos/productos.component';
-import { CategoriaComponent } from './vistas/categoria/categoria.component';
 import { DetalleComponent } from './vistas/detalle/detalle.component';
-import { CarritoDetalleComponent } from './vistas/detalle/carrito-detalle/carrito-detalle.component';
+import { RegistrarseComponent } from './vistas/registrarse/registrarse.component';
+import { PerfilComponent } from './vistas/perfil/perfil.component';
+import { CarritoComponent } from './vistas/carrito/carrito.component';
+import { HomeComponent } from './vistas/home/home.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'login', pathMatch:'full'},
+  {path:'',redirectTo:'home', pathMatch:'full'},
+
+  //Home
+  {path:'home',component:HomeComponent}, 
+
   //Login
   {path:'login',component:LoginComponent},
+
+  //Registrarse
+  {path:'registrarse',component:RegistrarseComponent},
+
+  //Perfil
+  {path:'perfil',component:PerfilComponent},
 
   //Pedidos
   {path:'pedidos',component:PedidosComponent},
 
-  //Productos
-  {path: 'productos', component:ProductosComponent},
-
-  //Categorias
-  {path: 'categorias', component:CategoriaComponent},
 
   //Detalle
   {path: 'detalle', component:DetalleComponent},
 
   //Detalle
-  {path: 'carrito', component:CarritoDetalleComponent},
+  {path: 'carrito', component:CarritoComponent},
 
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 ];
 
@@ -36,4 +42,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[LoginComponent,PedidosComponent,ProductosComponent,CategoriaComponent,DetalleComponent,CarritoDetalleComponent]
+export const routingComponents=[LoginComponent,PedidosComponent,DetalleComponent,CarritoComponent]

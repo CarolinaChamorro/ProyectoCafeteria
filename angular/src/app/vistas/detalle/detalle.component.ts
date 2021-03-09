@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
 import { DetalleService } from '../../services/detalle.service';
 import {ToastrService} from 'ngx-toastr';
 @Component({
@@ -10,15 +11,27 @@ export class DetalleComponent implements OnInit {
   
   detalles: Array<any>=[];
   productos: Array<any>=[];
+  categorias: Array<any>=[];
 
   constructor(private detalleService:DetalleService,
-     private toastr:ToastrService
+     private toastr:ToastrService,private router: Router,
      ) { }
 
   traerDetalles(){
     this.detalleService.allDetalles().subscribe(res=>{
       this.detalles=res.data
       // console.log(res.data)
+    },
+    err => {
+      this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
+        positionClass: 'toast-bottom-left'
+      })
+    })
+  }
+  traerCategorias(){
+    this.detalleService.getAllCategorias().subscribe(res=>{
+      this.categorias=res.data;
+      console.log(this.categorias);
     },
     err => {
       this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
@@ -45,7 +58,7 @@ export class DetalleComponent implements OnInit {
   traerProductos(){
     this.detalleService.getAllProductos().subscribe(res=>{
       this.productos = res.data;
-      console.log(res.data)
+      //console.log(res.data)
     })
   }
   
@@ -53,15 +66,17 @@ export class DetalleComponent implements OnInit {
   ngOnInit(): void {
     this.traerProductos();
     this.traerDetalles();
+    this.traerCategorias();
   }
 
   //Obtener clic
   
   clickeado:boolean=false;
   mostrar:string='';
+  
   pedidos={
     status:'',
-    user_id:0,
+    user_id:localStorage.getItem("user_id"),
     producto_id:0,
     cantidad:0
 
@@ -74,11 +89,12 @@ export class DetalleComponent implements OnInit {
   //color del card
   flag = false;
 
+
   carrito(valor:number,unidad:number){    
    this.pedidos={
     producto_id:valor,
     cantidad:unidad,
-    user_id:1,
+    user_id:localStorage.getItem("user_id"),
     status:'Agregado'
    };
    this.cantidad.push(this.pedidos);
@@ -130,6 +146,7 @@ export class DetalleComponent implements OnInit {
         this.toastr.warning('Intentalo más tarde', 'SERVIDOR', {
           positionClass: 'toast-bottom-left'
         })
+        this.router.navigate(['carrito'])
       })}
       this.toastr.success('Se ha realizado con éxito su pedido', 'Pedido', {
         positionClass: 'toast-bottom-left'

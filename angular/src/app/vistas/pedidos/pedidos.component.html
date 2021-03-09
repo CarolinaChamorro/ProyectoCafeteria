@@ -1,24 +1,49 @@
-<div class="">
-    <div>
-        <h1>Detalle de productos-pedidos-users</h1>
-    </div>
-    <div>
-     <button routerLink="/detalles">Detalle</button>
-    </div>
-    <div>
-        <h1 *ngIf="pedidos.length==0">No hay datos que mostrar</h1>
-        <div *ngFor="let pedido of pedidos">
-    
-            <span *ngFor='let detalle of detalles' class="flex items-center justify-center">
-                <p *ngIf='detalle.id === pedido.detalle_id' class="text-xs font-sans">{{detalle.status+' '+detalle.producto_id}}</p>
-            </span>
-
-            <span *ngFor='let user of users' class="flex items-center justify-center">
-                <p *ngIf='user.id === pedido.user_id' class="text-xs font-sans">{{user.name+' '+user.email}}</p>
-            </span>
-
-    
+<div class="container">
+    <div class="card" >
+        <div class="card-header">
+          <h5 class="card-title">
+            Pedido de 
+          </h5>
         </div>
-    </div>
-    </div>
-
+        <div class="card-body">
+          <div style="margin: 1cm;">
+            <p class="card-title">Orden:Nombre User</p>
+            <p class="card-text">Cedula: </p>
+            <p class="card-text">Correo: </p>
+            <p class="card-text">Teléfono: </p>
+            <p class="card-text">Dirección: </p>
+          </div>
+        </div>
+        <div class="card-footer">
+            <h5 class="card-body">Detalles Pedidos</h5>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Productos</th>
+                      <th scope="col">Detalle</th>
+                      <th scope="col">Precio U.</th>
+                      <th scope="col">Subtotal</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of detallesPedido;let j = index" >
+                      <th scope="row">{{j+1}}</th>
+                      <td>{{i.cantidad}} </td>
+                      <td>{{i.nombre}}</td>
+                      <td>{{i.nombre_categoria}}</td>
+                      <td>{{i.precio}}</td>
+                      <td>$ {{subtotal[j]}}</td>
+                    </tr>
+                    <tr>
+                      <th colspan="4"></th>
+                      <th >Total</th>
+                      <td>$ {{total}} </td>
+                    </tr>
+                  </tbody>
+            </table>    
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+</div>
