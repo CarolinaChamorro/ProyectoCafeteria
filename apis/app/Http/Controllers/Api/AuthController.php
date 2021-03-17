@@ -55,6 +55,8 @@ class AuthController extends Controller
     //Setting login response 
     $success['token'] = $this->apiToken;
     $success['name'] =  $user->name;
+    $success['id']= $user->id;
+    
       return response()->json([
         'status' => 'success',
         'data' => $success

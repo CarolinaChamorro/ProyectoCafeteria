@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 import { DataCategoriaService } from '../../services/data-categoria.service';
 import { Categoria } from '../../class/categoria';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-users-edit',
@@ -12,7 +13,8 @@ export class CategoriasEditComponent implements OnInit {
 id:any;
 data:any;
 categorias=new Categoria
-constructor(private route:ActivatedRoute ,private dataService:DataCategoriaService) { }
+constructor(private route:ActivatedRoute ,private dataService:DataCategoriaService,
+  private toastr:ToastrService) { }
 
   ngOnInit(): void {
    this.id=this.route.snapshot.params.id;
@@ -29,5 +31,8 @@ this.dataService.getCategoriaById(this.id).subscribe(res=>{
   
 updateCategorias(){
  this.dataService.updateCategoriasData(this.id,this.categorias).subscribe(resp=>{console.log(resp)})
+ this.toastr.success('Actualizado con éxito', 'Categoría', {
+  positionClass: 'toast-top-right'
+})
 }
 }

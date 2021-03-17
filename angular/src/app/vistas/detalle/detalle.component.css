@@ -1,5 +1,5 @@
 .color{
-    background-color: rgba(32, 243, 162, 0.863);
+    background-color: rgba(216, 85, 114, 0.863);
     text-align: center;
     color: rgb(8, 8, 8);
 }
@@ -9,7 +9,7 @@
     color:black;
 }
 .activado{
-    background-color: rgba(243, 92, 32, 0.863);
+    background-color: rgb(98, 170, 70);
     text-align: center;
     color: rgb(8, 8, 8);
 }

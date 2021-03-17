@@ -1,35 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import { DetallePedido } from '../../models/detalle-pedido';
+import { DetallePedido } from '../../../models/detalle-pedido';
 import { LaravelApiService } from 'src/app/services/api/laravel-api.service';
 import {ToastrService} from 'ngx-toastr';
-@Component({
-  selector: 'app-pedidos',
-  templateUrl: './pedidos.component.html',
-  styleUrls: ['./pedidos.component.css']
-})
-export class PedidosComponent implements OnInit {
 
+@Component({
+  selector: 'app-verpedido',
+  templateUrl: './verpedido.component.html',
+  styleUrls: ['./verpedido.component.css']
+})
+export class VerpedidoComponent implements OnInit {
   constructor(private activaterouter:ActivatedRoute, private router:Router, 
-    private api:LaravelApiService,
-    private toastr:ToastrService) { }
-  pedidoUserPrducto:Array<any>=[];
+    private api:LaravelApiService,private toastr:ToastrService) { }
+  pedidoUserPrducto:any=[];
   detallesPedido:DetallePedido[]=[];
   index:number=0;
   subtotal:any=[];
   total:number=0
   pedido={
-    status:"Realizado"
+    status:"Enviado"
   }
   ngOnInit(): void {
-    let pedidoProductos = localStorage.getItem('user_id') //this.activaterouter.snapshot.paramMap.get('id')
+    let pedidoProductos = this.activaterouter.snapshot.paramMap.get('id')
     this.api.perfilUser(pedidoProductos).subscribe(data=>{
       this.pedidoUserPrducto = data;
       console.log(this.pedidoUserPrducto)
     })
     this.api.detallesPedido(pedidoProductos).subscribe(data=>{
       for (let j = 0; j < data.length; j++) {
-        if (data[j].status==="Agregado" ) {
+        if (data[j].status==="Realizado") {
           this.detallesPedido = data;
           this.subtotal.push(this.detallesPedido[j].cantidad * this.detallesPedido[j].precio)  
           console.log(this.subtotal)     
@@ -54,8 +53,8 @@ export class PedidosComponent implements OnInit {
     for (let index = 0; index < this.detallesPedido.length; index++) {
       this.updateStatus(this.detallesPedido[index].id, this.pedido)      
     }
-    this.router.navigate(['detalle'])
-    this.toastr.success('Pedido registrado', 'Pedido', {
+    this.router.navigate(['productos']);
+    this.toastr.success('Pedido enviado', 'Pedido', {
       positionClass: 'toast-bottom-left'
     })
   }

@@ -24,6 +24,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { CategoriasEditComponent } from './components/categorias-edit/categorias-edit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
+import { PedidosadminComponent } from './vistas/pedidosadmin/pedidosadmin.component';
+import { VerpedidoComponent } from './vistas/pedidosadmin/verpedido/verpedido.component';
 
 const routes: Routes = [
   { path: 'productos', component:ProductosComponent }, 
@@ -50,6 +52,8 @@ const routes: Routes = [
     CategoriasComponent,
     CategoriasEditComponent,
     NavbarComponent,
+    PedidosadminComponent,
+    VerpedidoComponent,
   ],
   imports: [
     BrowserModule,

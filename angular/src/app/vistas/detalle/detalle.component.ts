@@ -58,8 +58,9 @@ export class DetalleComponent implements OnInit {
   traerProductos(){
     this.detalleService.getAllProductos().subscribe(res=>{
       this.productos = res.data;
-      //console.log(res.data)
+      console.log(res.data)
     })
+
   }
   
 
@@ -67,6 +68,7 @@ export class DetalleComponent implements OnInit {
     this.traerProductos();
     this.traerDetalles();
     this.traerCategorias();
+    
   }
 
   //Obtener clic
@@ -99,8 +101,8 @@ export class DetalleComponent implements OnInit {
    };
    this.cantidad.push(this.pedidos);
   console.log(this.cantidad)
-   this.toastr.success('Se ha agregado el producto', 'Producto', {
-    positionClass: 'toast-bottom-left'
+   this.toastr.success('Producto seleccionado', 'Producto', {
+    positionClass: 'toast-top-right'
   })
   console.log('Lista de productos'+this.lista)
   }
@@ -148,10 +150,7 @@ export class DetalleComponent implements OnInit {
         })
         this.router.navigate(['carrito'])
       })}
-      this.toastr.success('Se ha realizado con éxito su pedido', 'Pedido', {
-        positionClass: 'toast-bottom-left'
-      })
-
+      
     }
     
  

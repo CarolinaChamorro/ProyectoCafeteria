@@ -16,7 +16,7 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        $perfil = Perfil::paginate(10);
+        $perfil = Perfil::all();
         return PerfilResource::collection($perfil);
     }
 
@@ -58,7 +58,20 @@ class PerfilController extends Controller
      */
     public function show($id)
     {
-        return Perfil::findOrFail($id);
+        $perfil=Perfil::where("perfils.user_id", "=", $id)
+        ->select("users.name", "users.email", "perfils.cedula", "perfils.direccion", "perfils.telefono")
+        ->join("users", "users.id", "=", "perfils.user_id")
+        ->get();
+        return $perfil;
+    }
+
+    public function rol()
+    {
+        $perfil = Perfil::select("users.id", "users.name", "users.email", "perfils.cedula", "perfils.direccion", "detalles.user_id","detalles.status")
+        ->join("users", "users.id", "=", "perfils.user_id")
+        ->join("detalles", "detalles.user_id", "=", "users.id")
+        ->get();
+        return $perfil;
     }
 
     /**
@@ -85,7 +98,7 @@ class PerfilController extends Controller
         $perfil->cedula=$request->cedula;
         $perfil->direccion=$request->direccion;
         $perfil->telefono=$request->telefono;
-
+        $perfil->rol=$request->rol;
         if($perfil->save()){
             return new PerfilResource($perfil);
         }

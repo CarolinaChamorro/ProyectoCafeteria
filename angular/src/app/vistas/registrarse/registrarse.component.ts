@@ -30,7 +30,7 @@ export class RegistrarseComponent implements OnInit {
   checkLocalStorage(){
     if(localStorage.getItem('token')) {
       // code...
-      this.router.navigate(['productos'])
+      this.router.navigate([''])
     }
   }
 

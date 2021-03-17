@@ -1,0 +1,49 @@
+<div class="container mt-6">
+    <h1 class="text-center" style="margin-top: 75px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:xx-large;">Información de los pedidos por enviar</h1>
+    <table class="table table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cedula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Dirección</th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of pedidosAdminU;let j = index" (click)="verPedidos(i.id)">
+                <th scope="row">{{j+1}}</th>
+                <td>{{i.cedula}} </td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.telefono}}</td>
+                <td>{{i.direccion}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <h1 class="text-center" style="margin-top: 75px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:xx-large;">Información de pedidos realizados</h1>
+    <table class="table table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cedula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Dirección</th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of pedidos2;let j = index" >
+                <th scope="row">{{j+1}}</th>
+                <td>{{i.cedula}} </td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.telefono}}</td>
+                <td>{{i.direccion}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

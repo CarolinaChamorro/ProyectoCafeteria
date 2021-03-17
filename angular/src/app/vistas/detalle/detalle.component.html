@@ -1,8 +1,8 @@
-<br><br>
-<h1 class="text-center">Catálogo de productos</h1>
+<
+<h1 class="text-center" style="margin-top: 50px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:xx-large;">Catálogo de productos</h1>
 <br>
-<button routerLink='/carrito' (click)="PostearPedido()"   class="pedido">Ver carrito de compra</button>
-<div class="container ">
+<button routerLink='/carrito' (click)="PostearPedido()"   class="pedido">Añadir productos al carrito de compras </button>
+<div class="container">
      <div class="row align-items-start d-flex justify-content-center">
         <div *ngFor="let key of  productos">
                 <div *ngFor="let categoria of categorias">
@@ -10,9 +10,9 @@
                         <div class="col-4" >
                             <div class="card mb-3 p-2 color"   style="width: 15rem;">
                                 <div class="card-body">
-                                <h5 class="card-title"  [ngClass]="{'color': flag, 'sinColor': !flag}">Nombre: {{key.nombre}}</h5>
+                                <h5 class="card-title" style="font-weight: bold;font-size:large" >{{key.nombre}}</h5>
                                 <p class="card-text">Detalle: {{key.detalle}}</p>
-                                <p class="card-text">Precio: {{key.precio}}</p>
+                                <p class="card-text">Precio:$ {{key.precio}}</p>
                                 <p class="card-text">Tipo: {{categoria.nombre_categoria}}</p>    
                                 </div>
                                 <div class="fileContainer">

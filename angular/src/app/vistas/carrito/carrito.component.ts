@@ -98,9 +98,9 @@ export class CarritoComponent implements OnInit {
    this.cantidad.push(this.pedidos);
   console.log(this.cantidad)
    this.toastr.success('Se ha agregado el producto', 'Producto', {
-    positionClass: 'toast-bottom-left'
+    positionClass: 'toast-top-right'
   })
-  console.log('Lista de productos'+this.lista)
+  console.log('Lista de productos'+this.lista);
   }
 
   borrarElemento(arr:any,item:any){
@@ -116,7 +116,6 @@ export class CarritoComponent implements OnInit {
         positionClass: 'toast-bottom-left'
       })
     }
-    
   }
   
   
@@ -151,7 +150,6 @@ export class CarritoComponent implements OnInit {
 
     }
     
- 
   }
 
 }

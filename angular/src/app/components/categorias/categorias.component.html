@@ -1,18 +1,21 @@
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<app-navbar></app-navbar>
-<br><br><br><br>
-<form (ngSubmit)="addData()" class="ml-3">
+<h1 class="text-center" style="margin-top: 75px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:xx-large;">Categorías</h1>
+<form (ngSubmit)="addData()" class="ml-3" >
     <div class="form-group">
-      <label for="name">nombre</label>
-      <input type="text" name="name" class="form-control" [(ngModel)]="categorias.nombre_categoria">
+      <label for="name" style="font-weight: bold;">Nombre de categoría o tipo</label>
+      <div class="row">
+        <div class="col-xs-3 ml-3">
+          <input type="text" name="name" class="form-control" [(ngModel)]="categorias.nombre_categoria">
+        </div>
+      </div>
     </div>
-    <button class="btn btn-dark btn-sm mt-4 mb-4">Registrar</button>
+    <button class="btn btn-outline-primary mt-4 mb-4">Registrar</button>
   </form>
   <table class="table ml-4">
        <thead>
          <tr>
-          <th scope="col">id</th>
-           <th scope="col">nombre de categoría</th>
+          <th scope="col">#</th>
+           <th scope="col">Nombre de categoría</th>
+           <th scope="col">Acción</th>
          </tr>
        </thead>
        <tbody>

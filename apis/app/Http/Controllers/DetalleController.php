@@ -32,7 +32,7 @@ class DetalleController extends Controller
     public function getDetallesPedido($id)
     {
         $detalle = Detalle::where("detalles.user_id", "=",$id)
-        ->select("detalles.status", "detalles.cantidad", "productos.nombre","productos.precio", "categorias.nombre_categoria")
+        ->select("detalles.id","detalles.status", "detalles.cantidad", "productos.nombre","productos.precio", "categorias.nombre_categoria")
         ->join("productos", "productos.id", "=", "detalles.producto_id")
         ->join("categorias", "categorias.id", "=", "productos.categoria_id")
         ->get();
@@ -93,11 +93,6 @@ class DetalleController extends Controller
     {
         $detalle=Detalle::findOrFail($id);
         $detalle->status=$request->status;
-        $detalle->cantidad=$request->cantidad;
-        $detalle->producto_id=$request->producto_id;
-        $detalle->user_id=$request->user_id;
-        
-
         if($detalle->save()){
             return new DetalleResource($detalle);
         }

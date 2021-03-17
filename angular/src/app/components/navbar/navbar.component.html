@@ -1,19 +1,28 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/productos">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/categoria">Categoria</a>
-          </li>
-        </ul>
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a routerLink="/home" class="w3-bar-item w3-button"><b>Coffe</b> Ecuatoriano</a>
+    
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small" >
+      <div *ngIf="user.key != ''"> 
+       <div *ngFor="let usuario of users">
+        <div *ngFor="let perfil of perfiles">
+          <div *ngIf="perfil.rol==='cliente'  && perfil.user_id==user.key && usuario.id==user.key">
+           <a routerLink='/detalle' (click)="CatalogoProducto()" class="w3-bar-item w3-button">Catálogo Productos</a>
+           <a routerLink='/carrito' (click)="Carrito()" class="w3-bar-item w3-button">Carrito de compras</a>
+           <a routerLink='/pedidos' (click)="Pedido()" class="w3-bar-item w3-button">Pedidos</a>
+           <a routerLink='/home' (click)="onLogaut()" class="w3-bar-item w3-button">Cerrar sesión</a>
+          </div>
+          <div *ngIf="perfil.rol==='administrador' && perfil.user_id==user.key && usuario.id==user.key ">
+            <a routerLink='/categoria' (click)="Categoria()" class="w3-bar-item w3-button">Categorias</a>
+            <a routerLink='/productos' (click)="Productos()" class="w3-bar-item w3-button">Productos</a>
+            <a routerLink='/pedidosAdmin' (click)="PedidoAdmin()" class="w3-bar-item w3-button">Pedidos</a>
+            <a routerLink='/home' (click)="onLogaut()" class="w3-bar-item w3-button">Cerrar sesión</a>
+          </div>
+          </div>
+      </div>
+     </div>
     </div>
-    </div>
-  </nav>
+    
+  </div>
+</div>

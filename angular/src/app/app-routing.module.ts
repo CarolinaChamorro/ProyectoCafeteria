@@ -7,6 +7,8 @@ import { RegistrarseComponent } from './vistas/registrarse/registrarse.component
 import { PerfilComponent } from './vistas/perfil/perfil.component';
 import { CarritoComponent } from './vistas/carrito/carrito.component';
 import { HomeComponent } from './vistas/home/home.component';
+import { PedidosadminComponent } from './vistas/pedidosadmin/pedidosadmin.component';
+import { VerpedidoComponent } from './vistas/pedidosadmin/verpedido/verpedido.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home', pathMatch:'full'},
@@ -35,6 +37,11 @@ const routes: Routes = [
 
   // { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
+  //pedidoAdmin
+  {path:'pedidosAdmin', component:PedidosadminComponent},
+  //ver pedidosAdmin
+  {path:'pedidosAdmin/realizarPedido/:id', component:VerpedidoComponent},
+
 ];
 
 @NgModule({
@@ -42,4 +49,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents=[LoginComponent,PedidosComponent,DetalleComponent,CarritoComponent]
+export const routingComponents=[LoginComponent,PedidosComponent,DetalleComponent,CarritoComponent,RegistrarseComponent,LoginComponent]

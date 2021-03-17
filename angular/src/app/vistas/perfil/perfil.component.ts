@@ -17,7 +17,7 @@ export class PerfilComponent implements OnInit {
     telefono : new FormControl('', Validators.required),
     direccion : new FormControl('', Validators.required),
     rol : new FormControl('cliente'),
-    id_user: new FormControl(localStorage.getItem('id_user'))
+    user_id: new FormControl(localStorage.getItem('user_id'))
   })
   
   constructor(private api:LaravelApiService, private router:Router) { }
@@ -27,7 +27,7 @@ export class PerfilComponent implements OnInit {
 
   guardarPerfil(form:Perfil){
     this.api.crearPerfil(form).subscribe(data =>{
-      this.router.navigate(['productos'])
+      this.router.navigate(['login'])
       console.log(data);
     })
   }

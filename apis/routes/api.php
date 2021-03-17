@@ -47,6 +47,7 @@ Route::post('/perfil/create', [PerfilController::class, 'store']);
 Route::get('/perfil/{id}', [PerfilController::class, 'show']);
 Route::put('/perfil/{id}',[PerfilController::class, 'update']);
 Route::delete('/perfil/{id}', [PerfilController::class, 'destroy']);
+Route::get('/rol',[PerfilController::class, 'rol']);
 
 //detalle
 Route::get('/producto', [ProductoController::class, 'indexDetalle']);
